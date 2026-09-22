@@ -108,6 +108,15 @@ export class OrdersService {
   // PUT /orders/:id  (solo permite cambiar el status)
   update(id: number, dto: UpdateOrderDto): Order {
     const order = this.findOne(id);
+
+    // si se cancela el pedido, devuelvo el stock
+    if (dto.status === 'cancelled' && order.status !== 'cancelled') {
+      order.items.forEach((item) => {
+        const product = this.productsService.findOne(item.productId);
+        product.stock += item.quantity;
+      });
+    }
+
     order.status = dto.status;
     return order;
   }
