@@ -1,0 +1,329 @@
+{
+  "info": {
+    "name": "TP NestJS - Patrones",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Listar categorias",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories",
+            "header": []
+          }
+        },
+        {
+          "name": "Ver categoria",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Crear categoria",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/categories",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Libros\",\n  \"description\": \"Libros y revistas\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Editar categoria",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/categories/3",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Libros, revistas y comics\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar categoria",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/categories/3",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products",
+            "header": []
+          }
+        },
+        {
+          "name": "Ver producto",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Crear producto fisico",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/products",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Teclado\",\n  \"description\": \"Teclado mecanico\",\n  \"price\": 25000,\n  \"stock\": 10,\n  \"categoryId\": 1,\n  \"type\": \"physical\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear producto digital",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/products",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ebook TypeScript\",\n  \"description\": \"Libro digital\",\n  \"price\": 5000,\n  \"stock\": 100,\n  \"categoryId\": 1,\n  \"type\": \"digital\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear producto invalido (400)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/products",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"x\",\n  \"price\": -10,\n  \"stock\": -1,\n  \"categoryId\": 1,\n  \"type\": \"physical\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Editar producto",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/products/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 17000\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar producto",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/products/2",
+            "header": []
+          }
+        },
+        {
+          "name": "Por categoria",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products/category/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Buscar por nombre",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products/search?name=mouse",
+            "header": []
+          }
+        },
+        {
+          "name": "Filtrar por precio",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/products?minPrice=5000&maxPrice=20000",
+            "header": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Listar pedidos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orders",
+            "header": []
+          }
+        },
+        {
+          "name": "Crear pedido regular",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    }\n  ],\n  \"customerType\": \"regular\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear pedido student",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ],\n  \"customerType\": \"student\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear pedido premium",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ],\n  \"customerType\": \"premium\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Crear pedido blackFriday",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    }\n  ],\n  \"customerType\": \"blackFriday\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Pedido sin stock (400)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orders",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 9999\n    }\n  ],\n  \"customerType\": \"regular\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Ver pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orders/1",
+            "header": []
+          }
+        },
+        {
+          "name": "Cancelar pedido",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/orders/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"cancelled\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Borrar pedido",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/orders/1",
+            "header": []
+          }
+        }
+      ]
+    }
+  ]
+}
