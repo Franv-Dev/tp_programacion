@@ -14,8 +14,8 @@ Requisitos: Node.js 18+ y npm.
 
 ```bash
 # 1) Clonar el repositorio
-git clone <url-del-repo>
-cd tp-nestjs-patrones
+git clone https://github.com/Franv-Dev/tp_programacion.git
+cd tp_programacion/tp-nestjs-patrones
 
 # 2) Instalar dependencias
 npm install
@@ -311,10 +311,6 @@ Este proyecto usa almacenamiento en memoria a propósito, para mantener el foco 
 
 ## Evidencia de funcionamiento
 
-El proyecto fue compilado (`npm run build`) y ejecutado localmente, probando los endpoints principales con `curl`:
+Probé los endpoints con Postman. La colección está en `postman/tp-nestjs.postman_collection.json` (se importa desde Postman con *Import*).
 
-- `GET /products` devuelve los productos sembrados de ejemplo.
-- `POST /orders` con `customerType: "premium"` calcula correctamente el descuento (20%) y procesa el pago simulado, devolviendo `status: "paid"` y un `paymentTransactionId`.
-- Las validaciones de DTOs rechazan datos inválidos (ej: precio negativo) con `400 Bad Request` y un mensaje descriptivo.
-
-Se recomienda importar la colección de endpoints en Postman/Insomnia/Thunder Client para probar el resto de los casos (categorías, filtros de productos, actualización y borrado, etc.).
+Las capturas de las pruebas están en la carpeta `evidencias/`.
